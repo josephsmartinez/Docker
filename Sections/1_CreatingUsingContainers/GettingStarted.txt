@@ -1,0 +1,85 @@
+Section 1
+
+Getting started with Docker, Docker images, and Docker containers
+
+Simple commands
+
+    $ docker version
+    $ docker info
+    $ docker --help
+    $ docker container run
+    $ docker run (old)
+    $ docker
+
+Images vs Containers
+
+    Images, application we want to run
+    Containers, an instance of that images running
+
+    // Launches an NginX server
+    $ docker container run --publish 80:80 nginx
+    $ curl http://localhost
+
+    $ docker container ls
+    $ docker container stop [container i.d.]
+
+    // Detach the logs from shell window
+    // Traffic is -> port 80 host -> 80 container
+    $ docker container run --publish 80:80 --detach --name webhost nginx
+    $ docker container logs webhost
+
+    // Removing and force removing containers
+    $ docker container rm [ID] [ID] [ID]
+    $ docker container rm -f [ID] [ID] [ID]
+    $ docker container ls -a
+
+Containers are "Restricted Processes" not a VM
+
+    $ docker run --name mongo -d mongo
+    $ docker top mongo
+    $ docker ps mongo
+    $ ps aux | grep mongo
+    $ docker stop mongo
+
+Process Monitoring - What's going on in Containers CLI
+
+  Command to know:
+
+    Process list on container
+    # docker container top
+
+    Details of one container config
+    # docker container inspect
+
+    Performance stats for all containers
+    # docker container stats
+
+Getting a Shell Inside a Container : No SSH
+
+  Start new container interactively
+  # docker container run -it
+
+  Run additional command in existing containers
+  # docker container exec -it
+
+  Note: Different Linux distro in containers
+
+  docker 
+  # docker container run -it --name proxy nginx bash
+
+
+Docker Networks : Concepts for Private and Public Coms in containers
+
+FIXME: Change In Official Nginx Image Removes Ping
+
+Docker Networks: CLI Management of Virtual Networks
+
+Docker Networks: DNS and How Containers Find Each Other
+
+Assignment: Using Containers for CLI Testing
+
+Assignment Answers: Using Containers for CLI Testing
+
+ Assignment: DNS Round Robin Test
+
+ Assignment Answers: DNS Round Robin Test
