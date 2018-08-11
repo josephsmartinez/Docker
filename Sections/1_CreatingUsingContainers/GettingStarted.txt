@@ -141,8 +141,50 @@ FIXME: Change In Official Nginx Image Removes Ping
   image you should use, replace that with nginx:alpine,
   which still has ping command in it.
 
-
 Docker Networks: CLI Management of Virtual Networks
+
+  Default Docker virtual network is NAT'ed behind the
+  Host IP (--network bridge)
+
+  - Show network
+    # docker network ls
+
+  - Inspect a network
+    # docker network inspect [option]
+
+  - Create a network
+    # docker network create --driver
+
+  - Attach a network to container
+    # docker network connect
+
+  - Detach a network from container
+    # docker network disconnect
+
+  Host network, skips the Docker interface and attaches
+  itself to the host interface. (--network host)
+
+  Let's create a Docker network...
+
+  Spawns a new virtual network for you to attach containers to
+  # docker network create my_app_net
+
+  Dynamically creates a NIC in a container on an existing
+  virtual network.
+
+  # docker network connect [network] [network]
+  # docker container inspect
+
+  Dynamically removes a NIC from a container on a specific
+  virtual network
+
+  # docker network disconnect [network] [network]
+
+
+  Docker Networks: Default Security
+  - Create your apps so frontend/backend sit on same Docker network
+  - Their inter-communication never leave host
+  - All externally exposed ports closed by default
 
 Docker Networks: DNS and How Containers Find Each Other
 
