@@ -87,19 +87,60 @@ Getting a Shell Inside a Container : No SSH
   # docker container image
 
   # docker container run -it alpine bash
+
   CAUTION: This will cause an error. Alpine is too small of
   an image to handle a shell, however we can try something
   else.
 
-  # 
+  # docker container run -it alpine sh
 
+  Review:
 
-
+  # docker container run -it
+  # docker container exec -it
+  - Different Linux distros in containers
 
 
 Docker Networks : Concepts for Private and Public Coms in containers
 
+  - Review of docker container run -p
+  - For local dev/testing, Networks
+  - Port check with # docker container port <container>
+  - Understand how network packets move around Docker
+
+  Docker Network Defaults
+
+  - Each container connected to a private virtual network "bridge"
+  - Each virtual network routes through NAT firewall on host IP
+  - All container on a virtual network can talk to each other without -p
+  - Best practice is to create a new virtual network for each app:
+    - network 'my_web_app' for mysql and php/apache Containers
+    - network 'my_api' for mongo and node.js containers
+
+    Docker Networks contin...
+
+      - 'Batteries Included and Removable'
+        - Defaults work well in many cases, but easy to swap
+        out parts to customize it.
+      - Make new virtual network
+      - Attach container to more then one virtual network (or none)
+      - Skip virtual network and use host IP (--net=host)
+      - Use different Docker network driver to gain new abilities
+
+    Let's run a webhost on nginx to start
+
+    # docker container run -p 80:80 --name webhost -d nginx
+
+    Check the port forwarding
+
+    # docker container port webhost
+
 FIXME: Change In Official Nginx Image Removes Ping
+
+  Anywhere I do a docker container run <stuff> nginx , where nginx  is the
+  image you should use, replace that with nginx:alpine,
+  which still has ping command in it.
+
 
 Docker Networks: CLI Management of Virtual Networks
 
