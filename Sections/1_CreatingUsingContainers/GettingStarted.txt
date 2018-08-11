@@ -64,8 +64,37 @@ Getting a Shell Inside a Container : No SSH
 
   Note: Different Linux distro in containers
 
-  docker 
+  Example of running different types of images
   # docker container run -it --name proxy nginx bash
+
+  # docker container run -it --ubuntu ubuntu
+
+  NOTE: Exit will stop the container running because of the
+  way it was lunched.
+
+  Running the container after exiting
+
+  # docker start -ai [Container name]
+
+  Enter a container that is runnning
+
+  # docker container exec -it mysql bash
+
+  Using alpine image
+
+  # docker container pull alpine
+
+  # docker container image
+
+  # docker container run -it alpine bash
+  CAUTION: This will cause an error. Alpine is too small of
+  an image to handle a shell, however we can try something
+  else.
+
+  # 
+
+
+
 
 
 Docker Networks : Concepts for Private and Public Coms in containers
