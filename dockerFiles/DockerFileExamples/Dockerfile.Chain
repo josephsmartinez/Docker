@@ -1,0 +1,10 @@
+FROM debian:jessie
+RUN apt-get update && apt-get install -y \
+  gcc \
+  git \
+  java \
+  python \
+  ruby \
+  vim
+CMD ["echo", "hello world"]
+COPY abc.cfg /etc/program/adc.cfg
