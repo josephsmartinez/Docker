@@ -90,8 +90,7 @@ else.***
 `docker container run -it alpine sh`
 - Different Linux distros in containers
 
-Docker Networks : Concepts for Private and Public Coms in containers
-
+## Docker Networks : Concepts for Private and Public Coms in containers
 - Review of docker container run -p
 - For local dev/testing, Networks
 - Port check with # docker container port <container>
