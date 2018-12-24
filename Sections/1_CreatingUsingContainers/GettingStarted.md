@@ -97,7 +97,7 @@ else.***
 `docker container port <container>`
 - Understand how network packets move around Docker
 
-## Docker Network Defaults
+### Docker Network Defaults
 
 - Each container connected to a private virtual network "bridge"
 - Each virtual network routes through NAT firewall on host IP
@@ -106,69 +106,71 @@ else.***
 - network 'my_web_app' for mysql and php/apache Containers
 - network 'my_api' for mongo and node.js containers
 
-Docker Networks contin...
-
+## Docker Networks: Concepts for Private and Public Comma in Containers
 - 'Batteries Included and Removable'
-- Defaults work well in many cases, but easy to swap
-out parts to customize it.
+- Defaults work well in many cases, but easy to swap out parts to customize it.
 - Make new virtual network
 - Attach container to more then one virtual network (or none)
 - Skip virtual network and use host IP (--net=host)
 - Use different Docker network driver to gain new abilities
 
-Let's run a webhost on nginx to start
+### Docker Networking: Concepts
 
-# docker container run -p 80:80 --name webhost -d nginx
+Expose port to host  
+`docker container run -p`  
 
-Check the port forwarding
+Check the ports exposed on the running container
+`docker container port <container>`
 
-# docker container port webhost
+### Let's run a webhost on nginx to start
+`docker container run -p 80:80 --name webhost -d nginx`  
 
-FIXME: Change In Official Nginx Image Removes Ping
+### Check the port forwarding
+`docker container port webhost`  
+
+***FIXME: Change In Official Nginx Image Removes Ping***
 
 Anywhere I do a docker container run <stuff> nginx , where nginx  is the
 image you should use, replace that with nginx:alpine,
 which still has ping command in it.
 
-Docker Networks: CLI Management of Virtual Networks
-
+## Docker Networks: CLI Management of Virtual Networks
 Default Docker virtual network is NAT'ed behind the
 Host IP (--network bridge)
+`docker network --help`  
 
-- Show network
-# docker network ls
+Show network  
+`docker network ls`
 
-- Inspect a network
-# docker network inspect [option]
+Inspect a network  
+`docker network inspect [option]`  
 
-- Create a network
-# docker network create --driver
+Create a network  
+`docker network create --driver`  
 
-- Attach a network to container
-# docker network connect
+Attach a network to container  
+`docker network connect`  
 
-- Detach a network from container
-# docker network disconnect
+Detach a network from container  
+`docker network disconnect`  
 
 Host network, skips the Docker interface and attaches
 itself to the host interface. (--network host)
+***NOTE: Using --network host can gain performance by skipping virtual networks but sacrifices security of container model***
 
-Let's create a Docker network...
+### Let's create a Docker network...
+Spawns a new virtual network for you to attach containers to  
+`docker network create my_app_net`  
+Dynamically creates a NIC in a container on an existing virtual network.  
+```
+docker network connect [network] [network]
+docker container inspect
+```
+### Example: Launching a container on the specific network interface
+`docker container run -d --name new_nginx --network my_app_net nginx`
 
-Spawns a new virtual network for you to attach containers to
-# docker network create my_app_net
-
-Dynamically creates a NIC in a container on an existing
-virtual network.
-
-# docker network connect [network] [network]
-# docker container inspect
-
-Dynamically removes a NIC from a container on a specific
-virtual network
-
-# docker network disconnect [network] [network]
-
+### Dynamically removes a NIC from a container on a specific virtual network
+`docker network disconnect [network] [network]`
 
 Docker Networks: Default Security
 - Create your apps so frontend/backend sit on same Docker network
@@ -177,8 +179,7 @@ Docker Networks: Default Security
 - You must manually expose via -p, which is better default security
 - This gets even better later with Swarm and Overlay network
 
-Docker Networks: DNS and How Containers Find Each Other
-
+## Docker Networks: DNS and How Containers Find Each Other
 - Understanding how DNS is the key to easy inter-container communication
 - See how it works by default with custom networks
 - Learn how to use --link to enable DNS on default bridge network
@@ -187,13 +188,11 @@ Name Containers
 In the world of container constantly launching, disappearing,
 , moving, expanding, shrinking, and providing micro-services.
 We can no longer rely on IP address as the way to talk.
+***Forget IPs: Static IP's and using IP's for talking to container is not recommended***
 
-Forget IPs -> Too dynamic
-
-Docker DNS
-
+### Docker DNS
 Docker daemon has a built-in DNS server that containers use by
-default. This is the way containers will communicate with on other
+default. This is the way containers will communicate with on other  
 
 DNS Default Names
 - Docker defaults the hostname to the container's names,
@@ -203,10 +202,16 @@ Given two different nginx containers [container] [container]
 # docker container exec -it my_nginx ping new_nginx
 
 
+## Setting up 2 container that are networked and ping eachother
+```
+docker container run -t -d --name mikes_centos --network joes_network cen
+tos
 
+docker container run -t -d --name joes_centos --network joes_network cen
+tos
 
-
-
+docker exec -it joes_centos /bin/bash
+```
 
 
 Assignment: Using Containers for CLI Testing
