@@ -66,6 +66,11 @@ docker container run -it --ubuntu ubuntu
 NOTE: Exit will stop the container running because of the
 way it was lunched.  
 
+## Getting a Shell inside the container
+```
+# docker container run -it
+# docker container exec -it
+```
 ### Running the container after exiting
 `docker start -ai [Container name]`
 
@@ -83,13 +88,6 @@ an image to handle a shell, however we can try something
 else.***  
 
 `docker container run -it alpine sh`
-
-Review:
-```
-# docker container run -it
-# docker container exec -it
-```
-
 - Different Linux distros in containers
 
 Docker Networks : Concepts for Private and Public Coms in containers
