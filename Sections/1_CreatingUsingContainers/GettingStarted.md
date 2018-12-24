@@ -213,11 +213,16 @@ tos
 docker exec -it joes_centos /bin/bash
 ```
 
+Docker Networks: DNS
+- Containers should't rely on IP's of inter-communication
+- DNS for friendly names is built-in if you use custom Networks
+- You're using custom network right?
 
-Assignment: Using Containers for CLI Testing
+## Assignment: Using Containers for CLI Testing
 
-Assignment Answers: Using Containers for CLI Testing
 
-Assignment: DNS Round Robin Test
+## Assignment Answers: Using Containers for CLI Testing
 
-Assignment Answers: DNS Round Robin Test
+## Assignment: DNS Round Robin Test
+
+## Assignment Answers: DNS Round Robin Test

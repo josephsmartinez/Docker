@@ -1,6 +1,6 @@
-Assignment: CLI App Testign
+#Assignment: CLI App Testign
 
-- Using different Linux distro container to check 'curl'
+- Using different Linux distribution container to check 'curl'
 cli tool version
 
 - Use two different terminal window to start bash in both
@@ -11,8 +11,8 @@ cleanup
 
 - Ensure 'curl' is installed and on lasted version for that
 distro
-
-  - ubuntu: apt-get update && apt-get install curl
-  - centos: yum update curl
-
+```
+ubuntu: apt-get update && apt-get install curl
+centos: yum update curl
+```
 Check 'curl --version'
