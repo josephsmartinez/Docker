@@ -93,10 +93,11 @@ else.***
 ## Docker Networks : Concepts for Private and Public Coms in containers
 - Review of docker container run -p
 - For local dev/testing, Networks
-- Port check with # docker container port <container>
+- Port check with
+`docker container port <container>`
 - Understand how network packets move around Docker
 
-Docker Network Defaults
+## Docker Network Defaults
 
 - Each container connected to a private virtual network "bridge"
 - Each virtual network routes through NAT firewall on host IP
