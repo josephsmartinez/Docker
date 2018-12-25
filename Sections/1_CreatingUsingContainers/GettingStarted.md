@@ -11,6 +11,7 @@
     $ docker run (old)
     $ docker
 ```
+***NOTE: docker containers exit if there is no running application in the container.***
 ## Images vs Containers
 
 Images, application we want to run
