@@ -47,4 +47,13 @@ run -v //c/User/john/Documents:/path/container (windows)
 - Check logs, stop container
 - Create a new postgres container with same named volume using 9.6.2
 - Check a logs to validate
- 
+
+## Assignment: Bind Mounts
+- Use a Jekyll "Static Site Generator" to start a local web server
+- Don't have to web developer: this is example of binding the gap between local file access and apps running in containers.
+- Source code is in the course repo under bindmount-sample-1
+- We edit file with editor on our host using native tools
+- Container detect changes with host files and updates web server
+- start container with `docker run -p 80:4000 -v $(pwd):/site bretfisher/jekyll-serve`
+- Refresh our browser to see the changes
+- Change the file in `_post/` and refresh browser to see changes
