@@ -1,4 +1,5 @@
-## Windows Containers: Docker Is No Longer Just Linux
+# Windows Containers: Docker Is No Longer Just Linux
+
 So you've maybe heard about "Windows Containers". Something that wasn't even possible till mid-2016 in Windows 10 Pro/Ent and not feasible in production with Docker Swarm until April 2017 with a Windows Server 2016 hotfix. They are awesome, but new!
 
 To be clear, this course so far, even on Windows, is running what we've known as "Docker" for 4 years, which are now called "Linux Containers".
