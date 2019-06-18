@@ -2,13 +2,10 @@
 
 ## Using Secrets With Local Docker Compose
 
-docker node ls
-
-docker-compose up -d
-
-docker-compose exec psql cat /run/secrets/psql_user
-
-docker-compose 11
+> docker node ls
+> docker-compose up -d
+> docker-compose exec psql cat /run/secrets/psql_user
+> docker-compose 11
 
 pcat docker-compose.yml
 
