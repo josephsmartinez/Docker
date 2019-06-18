@@ -37,3 +37,17 @@ Check joined nodes
 > docker node ls
 
 ## Backup and Restore
+
+> docker service create --name bkweb -p 80:80 --replicas 2 httpd
+> docker service ls
+> docker service ps bkweb
+
+NOTE: worker node do not know about the service running, only the manager
+
+> ll /var/lib/docker/swarm
+> mkdir /root/swarm
+> cp -rf /var/lib/docker/swarm .
+> tar cvf swarm.tar /root/swarm
+> scp swarm.tar root@other_none_swarm-member:/root
+Once you hace replaced the /var/lib/docker/swarm with the backup from swarm.tar
+> docker swarm init --force-new-cluster
